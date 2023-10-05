@@ -38,10 +38,11 @@ const AppContext = createContext<AppContextType>({
 });
 
 const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
+  const user = localStorage.getItem("user");
   const [count, setCount] = useState(0);
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userData, setUserData] = useState<any[] | null>(
-    JSON.parse(localStorage.getItem("user"))
+    user !== null ? JSON.parse(user) : null
   );
 
   const [cart, setCart] = useState<CartProps | null>(null);
@@ -86,7 +87,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
   };
 
   const signOut = () => {
-    handleSignOut().then((result) => {
+    handleSignOut().then(() => {
       localStorage.clear();
       setUserData(null);
       location.reload();
@@ -146,7 +147,6 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
           ],
         });
       } else {
-        //atualizar a quantidade de produtos no carrinho, podendo tbm remover items
         setCart({
           user: userData[0].data,
           items: updateItemsArray(item, cart.items),

@@ -90,6 +90,13 @@ const Register: React.FC = () => {
         >
           Cadastrar
         </Button>
+        <Button
+          onClick={() => navigate("/login")}
+          fullWidth
+          sx={{ color: "#ea1d2c", marginTop: "20px" }}
+        >
+          Voltar pro login
+        </Button>
       </form>
     </Box>
   );
