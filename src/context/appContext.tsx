@@ -15,6 +15,7 @@ interface AppContextType {
   userData: any[] | null;
   cart: CartProps | null;
   updateItemToCart: (item: any, action: "INCREMENT" | "DECREMENT") => void;
+  clearCart: () => void;
 }
 
 type AppContextProps = {
@@ -35,6 +36,7 @@ const AppContext = createContext<AppContextType>({
   userData: null,
   cart: null,
   updateItemToCart: () => {},
+  clearCart: () => {},
 });
 
 const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
@@ -90,7 +92,15 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     handleSignOut().then(() => {
       localStorage.clear();
       setUserData(null);
+      setCart(null);
       location.reload();
+    });
+  };
+
+  const clearCart = () => {
+    setCart({
+      user: userData[0].data,
+      items: [],
     });
   };
 
@@ -194,6 +204,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
         userData,
         cart,
         updateItemToCart,
+        clearCart,
       }}
     >
       {children}

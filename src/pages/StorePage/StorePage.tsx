@@ -40,6 +40,11 @@ const StorePage: React.FC = () => {
           gap: "10px",
           flexWrap: "wrap",
           marginTop: "20px",
+          "@media (max-width: 440px)": {
+            flexDirection: "column",
+            alignItems: "center",
+            flexWrap: "nowrap",
+          },
         }}
       >
         {items

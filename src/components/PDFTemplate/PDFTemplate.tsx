@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
-import Header from "../../components/Header/Header";
 import {
   Box,
   Button,
+  Paper,
   Table,
   TableBody,
   TableCell,
@@ -11,13 +10,15 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { useAppContext } from "../../context/appContext";
+import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import Paper from "@mui/material/Paper";
+import { useAppContext } from "../../context/appContext";
+import { useReactToPrint } from "react-to-print";
 
-const CartPage: React.FC = () => {
+const PDFTemplate: React.FC = () => {
+  const componentRef = useRef();
   const navigate = useNavigate();
-  const { userData, cart } = useAppContext();
+  const { userData, cart, clearCart } = useAppContext();
 
   useEffect(() => {
     if (userData === null) {
@@ -33,13 +34,49 @@ const CartPage: React.FC = () => {
     return total;
   };
 
+  const handlePrint = useReactToPrint({
+    content: () => componentRef.current,
+    documentTitle: "hortifruti-checkout",
+    onAfterPrint: () => alert("print success"),
+  });
   return (
-    <>
-      <Header />
+    <Box
+      component="div"
+      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
       <Box
+        ref={componentRef}
         component="div"
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "20px",
+        }}
       >
+        <Box component="img" alt="logo" src="./logo.png" height="150px" />
+        <Typography
+          variant="subtitle1"
+          sx={{ maxWidth: 800, textAlign: "center" }}
+        >
+          Compra realizada com sucesso, seu pedido já foi mandado para nosso
+          fornecedor e já está em separação. Abaixo está seu comprovante de
+          compra com todos os detalhes do seu pedido.
+        </Typography>
+        <Box
+          component="div"
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            width: "100%",
+            maxWidth: 800,
+          }}
+        >
+          <Typography variant="h6" sx={{ fontWeight: "bold" }}>
+            Resumo da compra:
+          </Typography>
+        </Box>
         <TableContainer component={Paper} sx={{ maxWidth: 800 }}>
           <Table sx={{ minWidth: 350 }} aria-label="simple table">
             <TableHead>
@@ -88,13 +125,6 @@ const CartPage: React.FC = () => {
                 gap: "20px",
               }}
             >
-              <Button
-                variant="outlined"
-                sx={{ color: "#ea1d2c", borderColor: "#ea1d2c" }}
-                onClick={() => navigate("/hortifruti/")}
-              >
-                continuar comprando
-              </Button>
               <Typography
                 variant="subtitle1"
                 sx={{ color: "#ea1d2c", fontWeight: "bold" }}
@@ -102,31 +132,42 @@ const CartPage: React.FC = () => {
                 Total: ${getTotalPrice(cart.items).toFixed(2)}
               </Typography>
             </Box>
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                marginTop: "20px",
-                width: "100%",
-                maxWidth: 800,
-                minWidth: 350,
-              }}
-            >
-              <Button
-                variant="contained"
-                sx={{ backgroundColor: "#ea1d2c", color: "#fff" }}
-                onClick={() => navigate("/hortifruti/checkout")}
-              >
-                Finalizar Compra
-              </Button>
-            </Box>
           </>
         ) : null}
       </Box>
-    </>
+      <Box
+        component="div"
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          marginTop: "20px",
+          width: "100%",
+          maxWidth: 800,
+          minWidth: 350,
+          gap: "20px",
+        }}
+      >
+        <Button
+          variant="outlined"
+          sx={{ color: "#ea1d2c", borderColor: "#ea1d2c" }}
+          onClick={() => {
+            clearCart();
+            navigate("/hortifruti/");
+          }}
+        >
+          Voltar ao inicio
+        </Button>
+        <Button
+          variant="contained"
+          sx={{ backgroundColor: "#ea1d2c", color: "#fff" }}
+          onClick={handlePrint}
+        >
+          Imprimir comprovante
+        </Button>
+      </Box>
+    </Box>
   );
 };
 
-export default CartPage;
+export default PDFTemplate;

@@ -38,10 +38,13 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          width: "200px",
-          height: "300px",
+          width: "250px",
+          height: "320px",
           borderRadius: "20px",
           border: "1px solid #ccc",
+          "@media (max-width: 440px)": {
+            width: "90%",
+          },
         }}
       >
         <Box
@@ -53,7 +56,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
         />
         <Typography variant="body2">{item.data.name}</Typography>
         <Typography variant="body1">R$ {item.data.price.toFixed(2)}</Typography>
-        <Divider />
+        <Divider sx={{ color: "red", width: "100%", margin: "5px" }} />
         <ItemButton
           handleUpdateItem={handleUpdate}
           item={item}

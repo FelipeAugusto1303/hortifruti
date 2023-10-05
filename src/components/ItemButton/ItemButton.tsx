@@ -38,7 +38,7 @@ const ItemButton: React.FC<ItemButtonProps> = ({
             marginTop: "10px",
             border: "1px solid #ccc",
             borderRadius: "30px",
-            width: "95%",
+            width: "80%",
           }}
         >
           <Button

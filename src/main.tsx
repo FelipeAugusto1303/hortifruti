@@ -7,6 +7,7 @@ import { AppContextProvider } from "./context/appContext.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Register from "./pages/Register/Register.tsx";
 import CartPage from "./pages/CartPage/CartPage.tsx";
+import PDFTemplate from "./components/PDFTemplate/PDFTemplate.tsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/hortifruti/cart",
     element: <CartPage />,
+  },
+  {
+    path: "/hortifruti/checkout",
+    element: <PDFTemplate />,
   },
 ]);
 
