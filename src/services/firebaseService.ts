@@ -33,3 +33,7 @@ export const getUser = (email: string) => {
 export const createUser = async (body: any) => {
   return await addDoc(collection(db, "users"), body);
 };
+
+export const getAllFruits = () => {
+  return query(collection(db, "fruits"));
+};
