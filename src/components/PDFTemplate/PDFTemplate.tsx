@@ -146,6 +146,12 @@ const PDFTemplate: React.FC = () => {
           maxWidth: 800,
           minWidth: 350,
           gap: "20px",
+          "@media (max-width: 440px)": {
+            alignItems: "flex-end",
+            gap: "10px",
+            flexDirection: "column",
+            width: "100%",
+          },
         }}
       >
         <Button
