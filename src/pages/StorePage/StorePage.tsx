@@ -42,9 +42,13 @@ const StorePage: React.FC = () => {
           marginTop: "20px",
         }}
       >
-        {items.map((item) => {
-          return <ItemCard key={item.id} item={item} />;
-        })}
+        {items
+          .filter((item) =>
+            item.data.name.toLowerCase().includes(search.toLowerCase())
+          )
+          .map((item) => {
+            return <ItemCard key={item.id} item={item} />;
+          })}
       </Box>
     </Box>
   );
