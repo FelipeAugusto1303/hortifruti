@@ -18,14 +18,15 @@ const CartButton: React.FC<CartButtonProps> = ({ items, onClick }) => {
   return (
     <Box
       component="div"
-      sx={{ display: "flex", alignItems: "center", gap: "10px" }}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        gap: "10px",
+        cursor: "pointer",
+      }}
+      onClick={onClick}
     >
-      <Badge
-        data-testid="cart-badge"
-        badgeContent={items.length}
-        color="error"
-        onClick={onClick}
-      >
+      <Badge data-testid="cart-badge" badgeContent={items.length} color="error">
         <ShoppingCartIcon data-testid="cart-icon" color="action" />
       </Badge>
       <Typography variant="body1" sx={{ color: "#ea1d2c", fontWeight: "bold" }}>

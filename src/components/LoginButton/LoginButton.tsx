@@ -35,7 +35,11 @@ const LoginButton: React.FC<LoginButtonProps> = ({
           <Typography variant="body2" sx={{ color: "#0000008A" }}>
             Olá, {user.name}
           </Typography>
-          <LogoutIcon color="action" onClick={signout} />
+          <LogoutIcon
+            color="action"
+            onClick={signout}
+            sx={{ cursor: "pointer" }}
+          />
         </Box>
       ) : (
         <Box
