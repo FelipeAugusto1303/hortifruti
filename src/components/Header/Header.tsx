@@ -7,7 +7,7 @@ import { useAppContext } from "../../context/appContext";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
-  const { userData, signOut } = useAppContext();
+  const { userData, signOut, cart } = useAppContext();
   return (
     <>
       <Box
@@ -27,7 +27,10 @@ const Header: React.FC = () => {
           component="div"
           sx={{ display: "flex", gap: "10px" }}
         >
-          <CartButton items={["1"]} onClick={() => console.log("teste")} />
+          <CartButton
+            items={cart !== null ? cart.items : []}
+            onClick={() => console.log("teste")}
+          />
           <LoginButton
             user={
               userData !== null &&

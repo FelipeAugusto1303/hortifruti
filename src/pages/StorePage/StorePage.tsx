@@ -1,12 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import { Box, TextField } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import ItemCard from "../../components/ItemCard/ItemCard";
+import { getAllFruits } from "../../services/firebaseService";
+import { onSnapshot } from "firebase/firestore";
 
 const StorePage: React.FC = () => {
   const [search, setSearch] = useState("");
-  const items = [1, 2, 3, 4, 5];
+  const [items, setItems] = useState<any[]>([]);
+
+  useEffect(() => {
+    const q = getAllFruits();
+    onSnapshot(q, (querySnapshot) => {
+      setItems(
+        querySnapshot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+    });
+  }, []);
   return (
     <Box>
       <Header />
@@ -29,7 +43,7 @@ const StorePage: React.FC = () => {
         }}
       >
         {items.map((item) => {
-          return <ItemCard />;
+          return <ItemCard key={item.id} item={item} />;
         })}
       </Box>
     </Box>

@@ -2,25 +2,20 @@ import { Box, Button, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useAppContext } from "../../context/appContext";
 
-const ItemButton: React.FC = () => {
-  const [teste, setTest] = useState(0);
+type ItemButtonProps = {
+  handleUpdateItem: (item: any, action: "INCREMENT" | "DECREMENT") => void;
+  item: any;
+  cartItem: any | null;
+};
 
-  const { count, increment, decrement } = useAppContext();
-
-  const handleModifyItem = (action: "ADD" | "SUB") => {
-    switch (action) {
-      case "ADD":
-        setTest((prev) => prev + 1);
-        break;
-      case "SUB":
-        if (teste >= 0) {
-          setTest((prev) => prev - 1);
-        }
-    }
-  };
+const ItemButton: React.FC<ItemButtonProps> = ({
+  handleUpdateItem,
+  item,
+  cartItem,
+}) => {
   return (
     <>
-      {count === 0 ? (
+      {!cartItem ? (
         <Button
           data-testid="add-item-button"
           sx={{
@@ -29,7 +24,7 @@ const ItemButton: React.FC = () => {
             width: "70%",
             marginTop: "10px",
           }}
-          onClick={increment}
+          onClick={() => handleUpdateItem(item, "INCREMENT")}
         >
           Adicionar Item
         </Button>
@@ -54,11 +49,11 @@ const ItemButton: React.FC = () => {
               height: "40px",
               borderRadius: "30px 0px 0px 30px",
             }}
-            onClick={increment}
+            onClick={() => handleUpdateItem(item, "INCREMENT")}
           >
             +
           </Button>
-          <Typography variant="body2">{count}</Typography>
+          <Typography variant="body2">{cartItem.qnt}</Typography>
           <Button
             sx={{
               backgroundColor: "#ea1d2c",
@@ -67,7 +62,7 @@ const ItemButton: React.FC = () => {
               height: "40px",
               borderRadius: "0px 30px 30px 0px",
             }}
-            onClick={decrement}
+            onClick={() => handleUpdateItem(item, "DECREMENT")}
           >
             -
           </Button>
