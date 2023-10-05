@@ -31,13 +31,45 @@ const Header: React.FC = () => {
           justifyContent: "space-between",
           height: "70px",
           paddingRight: "20px",
+          "@media (max-width: 600px)": {
+            flexDirection: "column",
+            height: "150px",
+            paddingRight: "0px",
+          },
+          "@media (max-width: 440px)": {
+            height: "175px",
+          },
         }}
       >
-        <Box component="img" src="./logo.png" alt="logo" height="70px" />
+        <Box
+          component="img"
+          src="./logo.png"
+          alt="logo"
+          height="70px"
+          sx={{
+            "@media (max-width: 600px)": {
+              height: "100px",
+            },
+          }}
+        />
         <Box
           data-testid="buttons-container"
           component="div"
-          sx={{ display: "flex", gap: "10px" }}
+          sx={{
+            display: "flex",
+            gap: "10px",
+            "@media (max-width: 600px)": {
+              gap: 0,
+              justifyContent: "space-between",
+              width: "100%",
+            },
+            "@media (max-width: 440px)": {
+              gap: "10px",
+              flexDirection: "column",
+              justifyContent: "space-between",
+              width: "100%",
+            },
+          }}
         >
           <CartButton
             items={cart !== null ? cart.items : []}
