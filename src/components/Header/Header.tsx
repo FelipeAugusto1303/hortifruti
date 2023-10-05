@@ -15,7 +15,7 @@ const Header: React.FC = () => {
 
   const handleOpenCart = () => {
     if (userData !== null) {
-      navigate("/cart");
+      navigate("/hortifruti/cart");
     } else {
       setOpenDialog(true);
     }
@@ -49,7 +49,7 @@ const Header: React.FC = () => {
                 ? { name: userData[0].data.name }
                 : {}
             }
-            onClick={() => navigate("/login")}
+            onClick={() => navigate("/hortifruti/login")}
             signout={signOut}
           />
         </Box>

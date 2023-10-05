@@ -10,19 +10,19 @@ import CartPage from "./pages/CartPage/CartPage.tsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/hortifruti/",
     element: <StorePage />,
   },
   {
-    path: "/login",
+    path: "/hortifruti/login",
     element: <Login />,
   },
   {
-    path: "/register",
+    path: "/hortifruti/register",
     element: <Register />,
   },
   {
-    path: "/cart",
+    path: "/hortifruti/cart",
     element: <CartPage />,
   },
 ]);

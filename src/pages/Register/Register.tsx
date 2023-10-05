@@ -31,7 +31,7 @@ const Register: React.FC = () => {
       handleCreateUser(values.email, values.password)
         .then((response) => {
           createUser({ name: values.name, email: values.email }).then(() =>
-            navigate("/login")
+            navigate("/hortifruti/login")
           );
         })
         .catch((err) => console.log(err));
@@ -91,7 +91,7 @@ const Register: React.FC = () => {
           Cadastrar
         </Button>
         <Button
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/hortifruti/login")}
           fullWidth
           sx={{ color: "#ea1d2c", marginTop: "20px" }}
         >

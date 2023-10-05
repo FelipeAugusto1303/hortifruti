@@ -37,7 +37,7 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, handleClose }) => {
           Cancelar
         </Button>
         <Button
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/hortifruti/login")}
           sx={{
             backgroundColor: "#ea1d2c",
             color: "#fff",

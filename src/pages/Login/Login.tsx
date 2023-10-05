@@ -22,7 +22,7 @@ const Login: React.FC = () => {
 
   useEffect(() => {
     if (userData !== null && userData!.length > 0) {
-      navigate("/");
+      navigate("/hortifruti/");
     }
   }, [userData]);
   const formik = useFormik({
@@ -79,14 +79,14 @@ const Login: React.FC = () => {
         <Button
           fullWidth
           sx={{ color: "#ea1d2c", marginTop: "10px" }}
-          onClick={() => navigate("/register")}
+          onClick={() => navigate("/hortifruti/register")}
         >
           Cadastre-se
         </Button>
         <Button
           fullWidth
           sx={{ color: "#ea1d2c", marginTop: "10px" }}
-          onClick={() => navigate("/")}
+          onClick={() => navigate("/hortifruti/")}
         >
           Voltar para a tela inicial
         </Button>
