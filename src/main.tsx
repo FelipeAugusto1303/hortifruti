@@ -6,6 +6,7 @@ import StorePage from "./pages/StorePage/StorePage.tsx";
 import { AppContextProvider } from "./context/appContext.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Register from "./pages/Register/Register.tsx";
+import CartPage from "./pages/CartPage/CartPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "/cart",
+    element: <CartPage />,
   },
 ]);
 
