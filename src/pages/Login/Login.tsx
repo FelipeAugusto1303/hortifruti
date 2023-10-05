@@ -32,7 +32,6 @@ const Login: React.FC = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
       signIn(values.email, values.password);
     },
   });

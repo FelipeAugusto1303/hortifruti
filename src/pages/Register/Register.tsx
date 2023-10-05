@@ -28,10 +28,8 @@ const Register: React.FC = () => {
     validationSchema: validationSchema,
     onSubmit: (values) => {
       // Aqui você pode enviar os dados de login para o servidor ou executar a lógica desejada
-      console.log("Valores do formulário:", values);
       handleCreateUser(values.email, values.password)
         .then((response) => {
-          console.log(response);
           createUser({ name: values.name, email: values.email }).then(() =>
             navigate("/login")
           );
