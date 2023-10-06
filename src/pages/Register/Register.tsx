@@ -55,7 +55,7 @@ const Register: React.FC = () => {
         })
         .catch((err) => {
           setOpenError(true);
-          console.log(err);
+          throw Error(err);
         })
         .finally(() => {
           setIsLoading(false);

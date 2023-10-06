@@ -54,8 +54,8 @@ const Login: React.FC = () => {
           setOpenSuccess(true);
         })
         .catch((err) => {
-          console.log(err);
           setOpenError(true);
+          throw Error(err);
         })
         .finally(() => setIsLoading(false));
     },

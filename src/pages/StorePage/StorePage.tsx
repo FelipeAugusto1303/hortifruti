@@ -9,8 +9,7 @@ import { Item } from "../../common/model";
 
 const StorePage: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [items, setItems] = useState<any[] | []>([]);
-  console.log(items);
+  const [items, setItems] = useState<Item[] | []>([]);
 
   useEffect(() => {
     const q = getAllFruits();

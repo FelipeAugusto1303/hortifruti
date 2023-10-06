@@ -7,7 +7,7 @@ import { AppContextProvider } from "./context/appContext.tsx";
 import Login from "./pages/Login/Login.tsx";
 import Register from "./pages/Register/Register.tsx";
 import CartPage from "./pages/CartPage/CartPage.tsx";
-import PDFTemplate from "./components/PDFTemplate/PDFTemplate.tsx";
+import PDFTemplate from "./pages/PDFTemplate/PDFTemplate.tsx";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme/theme.tsx";
 
