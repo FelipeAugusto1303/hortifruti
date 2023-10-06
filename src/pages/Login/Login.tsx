@@ -1,9 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
+import { handleSignIn } from "../../services/firebaseService";
 
 const validationSchema = yup.object({
   email: yup
@@ -19,10 +28,16 @@ const validationSchema = yup.object({
 const Login: React.FC = () => {
   const navigate = useNavigate();
   const { signIn, userData } = useAppContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+
+  const handleCloseSuccess = () => setOpenSuccess(false);
+  const handleCloseError = () => setOpenError(false);
 
   useEffect(() => {
     if (userData !== null && userData!.length > 0) {
-      navigate("/hortifruti/");
+      setTimeout(() => navigate("/hortifruti/"), 3000);
     }
   }, [userData]);
   const formik = useFormik({
@@ -32,7 +47,17 @@ const Login: React.FC = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      signIn(values.email, values.password);
+      setIsLoading(true);
+      handleSignIn(values.email, values.password)
+        .then((response) => {
+          signIn(response.user.email);
+          setOpenSuccess(true);
+        })
+        .catch((err) => {
+          console.log(err);
+          setOpenError(true);
+        })
+        .finally(() => setIsLoading(false));
     },
   });
   return (
@@ -69,12 +94,19 @@ const Login: React.FC = () => {
           error={formik.touched.password && Boolean(formik.errors.password)}
           helperText={formik.touched.password && formik.errors.password}
         />
+
         <Button
           type="submit"
           fullWidth
           sx={{ backgroundColor: "#ea1d2c", marginTop: "20px", color: "#fff" }}
         >
-          Entrar
+          Entrar{" "}
+          {isLoading && (
+            <CircularProgress
+              size={20}
+              sx={{ marginLeft: "10px", color: "#fff" }}
+            />
+          )}
         </Button>
         <Button
           fullWidth
@@ -91,6 +123,34 @@ const Login: React.FC = () => {
           Voltar para a tela inicial
         </Button>
       </form>
+      <Snackbar
+        open={openSuccess}
+        autoHideDuration={3000}
+        onClose={handleCloseSuccess}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSuccess}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Login feito com êxito !
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openError}
+        autoHideDuration={3000}
+        onClose={handleCloseError}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseError}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Email/Senha invalidos !
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

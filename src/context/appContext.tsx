@@ -1,16 +1,9 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import {
-  getUser,
-  handleSignIn,
-  handleSignOut,
-} from "../services/firebaseService";
+import { getUser, handleSignOut } from "../services/firebaseService";
 import { onSnapshot } from "firebase/firestore";
 
 interface AppContextType {
-  count: number;
-  increment: () => void;
-  decrement: () => void;
-  signIn: (email: string, password: string) => void;
+  signIn: (email: string | null) => void;
   signOut: () => void;
   userData: any[] | null;
   cart: CartProps | null;
@@ -28,9 +21,6 @@ type CartProps = {
 };
 
 const AppContext = createContext<AppContextType>({
-  count: 0,
-  increment: () => {},
-  decrement: () => {},
   signIn: () => {},
   signOut: () => {},
   userData: null,
@@ -41,7 +31,7 @@ const AppContext = createContext<AppContextType>({
 
 const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
   const user = localStorage.getItem("user");
-  const [count, setCount] = useState(0);
+
   const [userEmail, setUserEmail] = useState<string | null>(null);
   const [userData, setUserData] = useState<any[] | null>(
     user !== null ? JSON.parse(user) : null
@@ -72,20 +62,8 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     }
   }, [userData]);
 
-  const increment = () => {
-    setCount(count + 1);
-  };
-
-  const decrement = () => {
-    setCount(count - 1);
-  };
-
-  const signIn = (email: string, password: string) => {
-    handleSignIn(email, password)
-      .then((response) => {
-        setUserEmail(response.user.email);
-      })
-      .catch((err) => console.log(err));
+  const signIn = (email: string | null) => {
+    setUserEmail(email);
   };
 
   const signOut = () => {
@@ -98,10 +76,12 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
   };
 
   const clearCart = () => {
-    setCart({
-      user: userData[0].data,
-      items: [],
-    });
+    if (userData !== null) {
+      setCart({
+        user: userData[0].data,
+        items: [],
+      });
+    }
   };
 
   const updateItemsArray = (item: any, itemArray: any[]) => {
@@ -196,9 +176,6 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
   return (
     <AppContext.Provider
       value={{
-        count,
-        increment,
-        decrement,
         signIn,
         signOut,
         userData,

@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import * as yup from "yup";
 import { useFormik } from "formik";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import {
+  Alert,
+  Box,
+  Button,
+  CircularProgress,
+  Snackbar,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { createUser, handleCreateUser } from "../../services/firebaseService";
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +27,13 @@ const validationSchema = yup.object({
 
 const Register: React.FC = () => {
   const navigate = useNavigate();
+  const [openSuccess, setOpenSuccess] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleCloseSuccess = () => setOpenSuccess(false);
+  const handleCloseError = () => setOpenError(false);
+
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -27,14 +42,24 @@ const Register: React.FC = () => {
     },
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      // Aqui você pode enviar os dados de login para o servidor ou executar a lógica desejada
+      setIsLoading(true);
       handleCreateUser(values.email, values.password)
-        .then((response) => {
-          createUser({ name: values.name, email: values.email }).then(() =>
-            navigate("/hortifruti/login")
-          );
+        .then(() => {
+          createUser({ name: values.name, email: values.email }).then(() => {
+            setOpenSuccess(true);
+
+            setTimeout(() => {
+              navigate("/hortifruti/login");
+            }, 3000);
+          });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          setOpenError(true);
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
     },
   });
   return (
@@ -88,7 +113,13 @@ const Register: React.FC = () => {
           fullWidth
           sx={{ backgroundColor: "#ea1d2c", marginTop: "20px", color: "#fff" }}
         >
-          Cadastrar
+          Cadastrar{" "}
+          {isLoading && (
+            <CircularProgress
+              size={20}
+              sx={{ marginLeft: "10px", color: "#fff" }}
+            />
+          )}
         </Button>
         <Button
           onClick={() => navigate("/hortifruti/login")}
@@ -98,6 +129,34 @@ const Register: React.FC = () => {
           Voltar pro login
         </Button>
       </form>
+      <Snackbar
+        open={openSuccess}
+        autoHideDuration={3000}
+        onClose={handleCloseSuccess}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSuccess}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          Cadastro feito com êxito !
+        </Alert>
+      </Snackbar>
+      <Snackbar
+        open={openError}
+        autoHideDuration={3000}
+        onClose={handleCloseError}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseError}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          O Email já existe !
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };

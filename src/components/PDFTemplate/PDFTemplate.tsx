@@ -16,7 +16,7 @@ import { useAppContext } from "../../context/appContext";
 import { useReactToPrint } from "react-to-print";
 
 const PDFTemplate: React.FC = () => {
-  const componentRef = useRef();
+  const componentRef = useRef(null);
   const navigate = useNavigate();
   const { userData, cart, clearCart } = useAppContext();
 
@@ -37,7 +37,6 @@ const PDFTemplate: React.FC = () => {
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
     documentTitle: "hortifruti-checkout",
-    onAfterPrint: () => alert("print success"),
   });
   return (
     <Box
