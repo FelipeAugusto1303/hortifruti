@@ -14,6 +14,7 @@ import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
 import { useReactToPrint } from "react-to-print";
+import { getTotalPrice } from "../../common/utils";
 
 const PDFTemplate: React.FC = () => {
   const componentRef = useRef(null);
@@ -25,14 +26,6 @@ const PDFTemplate: React.FC = () => {
       navigate("/hortifruit/");
     }
   }, []);
-
-  const getTotalPrice = (items: any[]) => {
-    var total = 0;
-    items.forEach((item) => {
-      total = total + item.price * item.qnt;
-    });
-    return total;
-  };
 
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,

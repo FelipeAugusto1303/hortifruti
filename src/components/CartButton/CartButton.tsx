@@ -1,20 +1,14 @@
 import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge, Box, Typography } from "@mui/material";
-
+import { getTotalPrice } from "../../common/utils";
+import { CartItems } from "../../common/model";
 type CartButtonProps = {
-  items: any[];
+  items: CartItems[];
   onClick?: () => void;
 };
 
 const CartButton: React.FC<CartButtonProps> = ({ items, onClick }) => {
-  const getTotalPrice = (items: any[]): number => {
-    var total = 0;
-    items.forEach((item) => {
-      total = total + item.price * item.qnt;
-    });
-    return total;
-  };
   return (
     <Box
       component="div"

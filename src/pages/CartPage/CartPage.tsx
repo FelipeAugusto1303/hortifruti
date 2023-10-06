@@ -16,6 +16,7 @@ import {
 import { useAppContext } from "../../context/appContext";
 import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
+import { getTotalPrice } from "../../common/utils";
 
 const CartPage: React.FC = () => {
   const navigate = useNavigate();
@@ -29,14 +30,6 @@ const CartPage: React.FC = () => {
       navigate("/hortifruit/");
     }
   }, []);
-
-  const getTotalPrice = (items: any[]) => {
-    var total = 0;
-    items.forEach((item) => {
-      total = total + item.price * item.qnt;
-    });
-    return total;
-  };
 
   return (
     <>
