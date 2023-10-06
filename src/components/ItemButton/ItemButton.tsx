@@ -1,6 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import React, { useState } from "react";
-import { useAppContext } from "../../context/appContext";
+import React from "react";
 
 type ItemButtonProps = {
   handleUpdateItem: (item: any, action: "INCREMENT" | "DECREMENT") => void;
