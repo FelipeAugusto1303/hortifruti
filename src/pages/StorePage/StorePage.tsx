@@ -47,13 +47,15 @@ const StorePage: React.FC = () => {
           },
         }}
       >
-        {items
-          .filter((item) =>
-            item.data.name.toLowerCase().includes(search.toLowerCase())
-          )
-          .map((item) => {
-            return <ItemCard key={item.id} item={item} />;
-          })}
+        {items.length > 0
+          ? items
+              .filter((item) =>
+                item.data.name.toLowerCase().includes(search.toLowerCase())
+              )
+              .map((item) => {
+                return <ItemCard key={item.id} item={item} />;
+              })
+          : null}
       </Box>
     </Box>
   );
