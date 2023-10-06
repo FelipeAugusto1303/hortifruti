@@ -4,10 +4,7 @@ import ItemButton from "../ItemButton/ItemButton";
 import { useAppContext } from "../../context/appContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
 import { Item } from "../../common/model";
-
-type ItemCardProps = {
-  item: Item;
-};
+import { ItemCardProps } from "./ItemCard.model";
 
 const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
   const { cart, updateItemToCart, userData } = useAppContext();

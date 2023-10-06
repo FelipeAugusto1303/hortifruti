@@ -9,11 +9,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-
-type LoginDialogProps = {
-  open: boolean;
-  handleClose: () => void;
-};
+import { LoginDialogProps } from "./LoginDialog.model";
 
 const LoginDialog: React.FC<LoginDialogProps> = ({ open, handleClose }) => {
   const navigate = useNavigate();

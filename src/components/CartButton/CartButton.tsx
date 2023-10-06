@@ -2,11 +2,7 @@ import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge, Box, Typography } from "@mui/material";
 import { getTotalPrice } from "../../common/utils";
-import { CartItem } from "../../common/model";
-type CartButtonProps = {
-  items: CartItem[];
-  onClick?: () => void;
-};
+import { CartButtonProps } from "./CartButton.model";
 
 const CartButton: React.FC<CartButtonProps> = ({ items, onClick }) => {
   return (

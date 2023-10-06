@@ -2,14 +2,7 @@ import React from "react";
 import PersonIcon from "@mui/icons-material/Person";
 import { Box, Typography } from "@mui/material";
 import LogoutIcon from "@mui/icons-material/Logout";
-
-type LoginButtonProps = {
-  user: {
-    name?: string | null;
-  };
-  onClick: () => void;
-  signout: () => void;
-};
+import { LoginButtonProps } from "./LoginButton.model";
 
 const LoginButton: React.FC<LoginButtonProps> = ({
   user,

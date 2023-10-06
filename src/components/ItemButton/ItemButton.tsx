@@ -1,12 +1,6 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
-import { CartItem, Item } from "../../common/model";
-
-type ItemButtonProps = {
-  handleUpdateItem: (item: Item, action: "INCREMENT" | "DECREMENT") => void;
-  item: Item;
-  cartItem: CartItem | null | undefined;
-};
+import { ItemButtonProps } from "./ItemButton.model";
 
 const ItemButton: React.FC<ItemButtonProps> = ({
   handleUpdateItem,
