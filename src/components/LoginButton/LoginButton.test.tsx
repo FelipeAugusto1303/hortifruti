@@ -5,13 +5,25 @@ import LoginButton from "./LoginButton";
 
 describe("LoginButton", () => {
   test("Should renders", () => {
-    const { getByTestId } = render(<LoginButton user={{}} />);
+    const { getByTestId } = render(
+      <LoginButton
+        user={{}}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByTestId("login-button-container")).toBeInTheDocument();
   });
 
   test("Should have styles", () => {
-    const { getByTestId } = render(<LoginButton user={{}} />);
+    const { getByTestId } = render(
+      <LoginButton
+        user={{}}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByTestId("login-button-container")).toHaveStyle({
       display: "flex",
@@ -21,25 +33,49 @@ describe("LoginButton", () => {
   });
 
   test("Should have correct text without user", () => {
-    const { getByText } = render(<LoginButton user={{}} />);
+    const { getByText } = render(
+      <LoginButton
+        user={{}}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByText("Entrar")).toBeInTheDocument();
   });
 
   test("Should have correct text with user", () => {
-    const { getByText } = render(<LoginButton user={{ name: "Felipe" }} />);
+    const { getByText } = render(
+      <LoginButton
+        user={{ name: "Felipe" }}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByText("Olá, Felipe")).toBeInTheDocument();
   });
 
   test("Should have correct text color with user", () => {
-    const { getByText } = render(<LoginButton user={{ name: "Felipe" }} />);
+    const { getByText } = render(
+      <LoginButton
+        user={{ name: "Felipe" }}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByText("Olá, Felipe")).toHaveStyle({ color: "#0000008A" });
   });
 
   test("Should have correct ttext color without user", () => {
-    const { getByText } = render(<LoginButton user={{}} />);
+    const { getByText } = render(
+      <LoginButton
+        user={{}}
+        onClick={() => console.log("click")}
+        signout={() => console.log("signout")}
+      />
+    );
 
     expect(getByText("Entrar")).toHaveStyle({ color: "#0000008A" });
   });

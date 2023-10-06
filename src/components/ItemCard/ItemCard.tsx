@@ -56,7 +56,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
         />
         <Typography variant="body2">{item.data.name}</Typography>
         <Typography variant="body1">R$ {item.data.price.toFixed(2)}</Typography>
-        <Divider sx={{ color: "red", width: "100%", margin: "5px" }} />
+        <Divider sx={{ color: "red", width: "100%", margin: "20px" }} />
         <ItemButton
           handleUpdateItem={handleUpdate}
           item={item}

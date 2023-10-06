@@ -5,10 +5,17 @@ import ItemButton from "./ItemButton";
 
 describe("ItemButton", () => {
   test("Should renders", () => {
-    const { getByText } = render(<ItemButton />);
+    const handleFunction = (item: any, action: "INCREMENT" | "DECREMENT") => {};
+    const item = null;
+    const cartItem = null;
+    const { getByText } = render(
+      <ItemButton
+        handleUpdateItem={handleFunction}
+        item={item}
+        cartItem={cartItem}
+      />
+    );
 
     expect(getByText("Adicionar Item")).toBeInTheDocument();
   });
-
-  test("Should add item", () => {});
 });
