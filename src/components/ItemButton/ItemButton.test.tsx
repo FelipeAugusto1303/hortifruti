@@ -1,11 +1,13 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { render } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import ItemButton from "./ItemButton";
 
 describe("ItemButton", () => {
   test("Should renders", () => {
-    const handleFunction = (item: any, action: "INCREMENT" | "DECREMENT") => {};
+    const handleFunction = (item: any, action: "INCREMENT" | "DECREMENT") => {
+      console.log(item, action);
+    };
     const item = null;
     const cartItem = null;
     const { getByText } = render(

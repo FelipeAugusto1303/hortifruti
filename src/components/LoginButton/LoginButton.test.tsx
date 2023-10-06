@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { render } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import LoginButton from "./LoginButton";
 
 describe("LoginButton", () => {

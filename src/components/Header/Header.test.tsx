@@ -1,6 +1,6 @@
 import "@testing-library/jest-dom";
-import { fireEvent, render } from "@testing-library/react";
-import { describe, expect, test, vi } from "vitest";
+import { render } from "@testing-library/react";
+import { describe, expect, test } from "vitest";
 import Header from "./Header";
 import { AppContextProvider } from "../../context/appContext";
 import { BrowserRouter } from "react-router-dom";
