@@ -54,10 +54,7 @@ const PDFTemplate: React.FC = () => {
         }}
       >
         <Box component="img" alt="logo" src="./logo.png" height="150px" />
-        <Typography
-          variant="subtitle1"
-          sx={{ maxWidth: 800, textAlign: "center" }}
-        >
+        <Typography variant="subtitle2">
           Compra realizada com sucesso, seu pedido já foi mandado para nosso
           fornecedor e já está em separação. Abaixo está seu comprovante de
           compra com todos os detalhes do seu pedido.
@@ -155,7 +152,6 @@ const PDFTemplate: React.FC = () => {
       >
         <Button
           variant="outlined"
-          sx={{ color: "#ea1d2c", borderColor: "#ea1d2c" }}
           onClick={() => {
             clearCart();
             navigate("/hortifruti/");
@@ -163,11 +159,7 @@ const PDFTemplate: React.FC = () => {
         >
           Voltar ao inicio
         </Button>
-        <Button
-          variant="contained"
-          sx={{ backgroundColor: "#ea1d2c", color: "#fff" }}
-          onClick={handlePrint}
-        >
+        <Button variant="contained" onClick={handlePrint}>
           Imprimir comprovante
         </Button>
       </Box>

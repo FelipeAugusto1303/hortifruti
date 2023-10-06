@@ -5,6 +5,7 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
@@ -28,19 +29,20 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, handleClose }) => {
       </DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Para continuar com a operação desejada, por favor realize o login na
-          plataforma Hortifruti.
+          <Typography variant="body2">
+            Para continuar com a operação desejada, por favor realize o login na
+            plataforma Hortifruti.
+          </Typography>
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} sx={{ color: "#ea1d2c" }}>
+        <Button variant="text" onClick={handleClose}>
           Cancelar
         </Button>
         <Button
+          variant="contained"
           onClick={() => navigate("/hortifruti/login")}
           sx={{
-            backgroundColor: "#ea1d2c",
-            color: "#fff",
             borderRadius: "8px",
           }}
         >

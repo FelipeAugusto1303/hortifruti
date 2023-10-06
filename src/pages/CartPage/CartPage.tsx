@@ -95,7 +95,6 @@ const CartPage: React.FC = () => {
             >
               <Button
                 variant="outlined"
-                sx={{ color: "#ea1d2c", borderColor: "#ea1d2c" }}
                 onClick={() => navigate("/hortifruti/")}
               >
                 continuar comprando
@@ -121,7 +120,6 @@ const CartPage: React.FC = () => {
             >
               <Button
                 variant="contained"
-                sx={{ backgroundColor: "#ea1d2c", color: "#fff" }}
                 onClick={() => {
                   if (cart !== null && cart.items.length > 0) {
                     navigate("/hortifruti/checkout");

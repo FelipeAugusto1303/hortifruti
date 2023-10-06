@@ -66,7 +66,7 @@ const Login: React.FC = () => {
       sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
       <Box component="img" src="./logo.png" alt="logo-image" width="200px" />
-      <Typography variant="subtitle1" sx={{ color: "#ccc" }}>
+      <Typography variant="subtitle1">
         Digite seu email e senha para utilizar a plataforma da Hortifruti
       </Typography>
       <form onSubmit={formik.handleSubmit}>
@@ -98,7 +98,8 @@ const Login: React.FC = () => {
         <Button
           type="submit"
           fullWidth
-          sx={{ backgroundColor: "#ea1d2c", marginTop: "20px", color: "#fff" }}
+          variant="contained"
+          sx={{ marginTop: "20px" }}
         >
           Entrar{" "}
           {isLoading && (
@@ -110,14 +111,16 @@ const Login: React.FC = () => {
         </Button>
         <Button
           fullWidth
-          sx={{ color: "#ea1d2c", marginTop: "10px" }}
+          variant="text"
+          sx={{ marginTop: "10px" }}
           onClick={() => navigate("/hortifruti/register")}
         >
           Cadastre-se
         </Button>
         <Button
           fullWidth
-          sx={{ color: "#ea1d2c", marginTop: "10px" }}
+          variant="text"
+          sx={{ marginTop: "10px" }}
           onClick={() => navigate("/hortifruti/")}
         >
           Voltar para a tela inicial

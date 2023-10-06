@@ -8,6 +8,8 @@ import Login from "./pages/Login/Login.tsx";
 import Register from "./pages/Register/Register.tsx";
 import CartPage from "./pages/CartPage/CartPage.tsx";
 import PDFTemplate from "./components/PDFTemplate/PDFTemplate.tsx";
+import { ThemeProvider } from "@mui/material/styles";
+import { theme } from "./theme/theme.tsx";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AppContextProvider>
-      <RouterProvider router={router} />
+      <ThemeProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ThemeProvider>
     </AppContextProvider>
   </React.StrictMode>
 );

@@ -17,9 +17,8 @@ const ItemButton: React.FC<ItemButtonProps> = ({
       {!cartItem ? (
         <Button
           data-testid="add-item-button"
+          variant="contained"
           sx={{
-            backgroundColor: "#ea1d2c",
-            color: "#fff",
             width: "70%",
           }}
           onClick={() => handleUpdateItem(item, "INCREMENT")}
@@ -39,9 +38,8 @@ const ItemButton: React.FC<ItemButtonProps> = ({
           }}
         >
           <Button
+            variant="contained"
             sx={{
-              backgroundColor: "#ea1d2c",
-              color: "#fff",
               fontSize: "20px",
               height: "40px",
               borderRadius: "30px 0px 0px 30px",
@@ -52,9 +50,8 @@ const ItemButton: React.FC<ItemButtonProps> = ({
           </Button>
           <Typography variant="body2">{cartItem.qnt}</Typography>
           <Button
+            variant="contained"
             sx={{
-              backgroundColor: "#ea1d2c",
-              color: "#fff",
               fontSize: "20px",
               height: "40px",
               borderRadius: "0px 30px 30px 0px",
