@@ -33,7 +33,6 @@ const ItemButton: React.FC<ItemButtonProps> = ({
             display: "flex",
             alignItems: "center",
             justifyContent: "space-between",
-            marginTop: "10px",
             border: "1px solid #ccc",
             borderRadius: "30px",
             width: "80%",

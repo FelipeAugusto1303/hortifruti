@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../../components/Header/Header";
 import {
+  Alert,
   Box,
   Button,
+  Snackbar,
   Table,
   TableBody,
   TableCell,
@@ -18,6 +20,9 @@ import Paper from "@mui/material/Paper";
 const CartPage: React.FC = () => {
   const navigate = useNavigate();
   const { userData, cart } = useAppContext();
+  const [openError, setOpenError] = useState(false);
+
+  const handleCloseError = () => setOpenError(false);
 
   useEffect(() => {
     if (userData === null) {
@@ -117,13 +122,33 @@ const CartPage: React.FC = () => {
               <Button
                 variant="contained"
                 sx={{ backgroundColor: "#ea1d2c", color: "#fff" }}
-                onClick={() => navigate("/hortifruti/checkout")}
+                onClick={() => {
+                  if (cart !== null && cart.items.length > 0) {
+                    navigate("/hortifruti/checkout");
+                  } else {
+                    setOpenError(true);
+                  }
+                }}
               >
                 Finalizar Compra
               </Button>
             </Box>
           </>
         ) : null}
+        <Snackbar
+          open={openError}
+          autoHideDuration={3000}
+          onClose={handleCloseError}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleCloseError}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            É necessário ter produtos no carrinho para seguir com a compra
+          </Alert>
+        </Snackbar>
       </Box>
     </>
   );
