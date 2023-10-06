@@ -21,7 +21,6 @@ const ItemButton: React.FC<ItemButtonProps> = ({
             backgroundColor: "#ea1d2c",
             color: "#fff",
             width: "70%",
-            marginTop: "10px",
           }}
           onClick={() => handleUpdateItem(item, "INCREMENT")}
         >

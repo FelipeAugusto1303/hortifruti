@@ -39,7 +39,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
           flexDirection: "column",
           alignItems: "center",
           width: "250px",
-          height: "320px",
+          paddingY: "10px",
           borderRadius: "20px",
           border: "1px solid #ccc",
           "@media (max-width: 440px)": {
