@@ -5,10 +5,12 @@ import SearchIcon from "@mui/icons-material/Search";
 import ItemCard from "../../components/ItemCard/ItemCard";
 import { getAllFruits } from "../../services/firebaseService";
 import { onSnapshot } from "firebase/firestore";
+import { Item } from "../../common/model";
 
 const StorePage: React.FC = () => {
   const [search, setSearch] = useState("");
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<any[] | []>([]);
+  console.log(items);
 
   useEffect(() => {
     const q = getAllFruits();

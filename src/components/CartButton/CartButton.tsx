@@ -2,9 +2,9 @@ import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Badge, Box, Typography } from "@mui/material";
 import { getTotalPrice } from "../../common/utils";
-import { CartItems } from "../../common/model";
+import { CartItem } from "../../common/model";
 type CartButtonProps = {
-  items: CartItems[];
+  items: CartItem[];
   onClick?: () => void;
 };
 

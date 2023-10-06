@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import ItemButton from "../ItemButton/ItemButton";
 import { useAppContext } from "../../context/appContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
+import { Item } from "../../common/model";
 
 type ItemCardProps = {
-  item: any;
+  item: Item;
 };
 
 const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
@@ -21,7 +22,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
     }
   }, [cart]);
 
-  const handleUpdate = (item: any, action: "INCREMENT" | "DECREMENT") => {
+  const handleUpdate = (item: Item, action: "INCREMENT" | "DECREMENT") => {
     if (userData === null) {
       setOpenDialog(true);
     } else {

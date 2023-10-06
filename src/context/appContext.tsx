@@ -1,24 +1,8 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { getUser, handleSignOut } from "../services/firebaseService";
 import { onSnapshot } from "firebase/firestore";
-
-interface AppContextType {
-  signIn: (email: string | null) => void;
-  signOut: () => void;
-  userData: any[] | null;
-  cart: CartProps | null;
-  updateItemToCart: (item: any, action: "INCREMENT" | "DECREMENT") => void;
-  clearCart: () => void;
-}
-
-type AppContextProps = {
-  children: React.ReactNode;
-};
-
-type CartProps = {
-  user: { name: string; email: string };
-  items: { id: string; name: string; price: number; qnt: number }[];
-};
+import { Cart, CartItem, Item, UserData } from "../common/model";
+import { AppContextProps, AppContextType } from "./appContext.model";
 
 const AppContext = createContext<AppContextType>({
   signIn: () => {},
@@ -33,11 +17,11 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
   const user = localStorage.getItem("user");
 
   const [userEmail, setUserEmail] = useState<string | null>(null);
-  const [userData, setUserData] = useState<any[] | null>(
+  const [userData, setUserData] = useState<UserData[] | null>(
     user !== null ? JSON.parse(user) : null
   );
 
-  const [cart, setCart] = useState<CartProps | null>(null);
+  const [cart, setCart] = useState<Cart | null>(null);
 
   useEffect(() => {
     if (userEmail !== null) {
@@ -84,7 +68,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     }
   };
 
-  const updateItemsArray = (item: any, itemArray: any[]) => {
+  const updateItemsArray = (item: Item, itemArray: CartItem[]) => {
     const index = itemArray.findIndex((element) => element.id === item.id);
     itemArray[index].qnt = itemArray[index].qnt + 1;
 
@@ -93,7 +77,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     return itemArray;
   };
 
-  const decrementItemsArray = (index: number, itemArray: any[]) => {
+  const decrementItemsArray = (index: number, itemArray: CartItem[]) => {
     itemArray[index].qnt = itemArray[index].qnt - 1;
 
     itemArray.splice(index, 1, itemArray[index]);
@@ -101,13 +85,13 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     return itemArray;
   };
 
-  const removeItemArray = (index: number, itemArray: any[]) => {
+  const removeItemArray = (index: number, itemArray: CartItem[]) => {
     itemArray.splice(index, 1);
 
     return itemArray;
   };
 
-  const incrementItem = (item: any) => {
+  const incrementItem = (item: Item) => {
     if (userData !== null && cart !== null) {
       if (cart.items.length === 0) {
         setCart({
@@ -145,7 +129,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     }
   };
 
-  const decrementItem = (item: any) => {
+  const decrementItem = (item: Item) => {
     if (userData !== null && cart !== null) {
       const index = cart.items.findIndex((element) => element.id === item.id);
       if (index > -1 && cart.items[index].qnt > 1) {
@@ -162,7 +146,7 @@ const AppContextProvider: React.FC<AppContextProps> = ({ children }) => {
     }
   };
 
-  const updateItemToCart = (item: any, action: "INCREMENT" | "DECREMENT") => {
+  const updateItemToCart = (item: Item, action: "INCREMENT" | "DECREMENT") => {
     switch (action) {
       case "INCREMENT":
         incrementItem(item);

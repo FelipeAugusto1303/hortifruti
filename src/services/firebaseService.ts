@@ -5,6 +5,7 @@ import {
 } from "firebase/auth";
 import { auth, db } from "./firebaseConfig";
 import { addDoc, collection, query, where } from "firebase/firestore";
+import { User } from "../common/model";
 
 export const handleSignIn = async (email: string, password: string) => {
   return await signInWithEmailAndPassword(
@@ -30,7 +31,7 @@ export const getUser = (email: string) => {
   return query(collection(db, "users"), where("email", "==", email));
 };
 
-export const createUser = async (body: any) => {
+export const createUser = async (body: User) => {
   return await addDoc(collection(db, "users"), body);
 };
 
