@@ -5,6 +5,7 @@ import { useAppContext } from "../../context/appContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
 import { Item } from "../../common/model";
 import { ItemCardProps } from "./ItemCard.model";
+import { ItemCardContainer } from "./ItemCard.style";
 
 const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
   const { cart, updateItemToCart, userData } = useAppContext();
@@ -29,22 +30,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
 
   return (
     <>
-      <Box
-        data-testid="itemcard-container"
-        component="div"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          width: "250px",
-          paddingY: "10px",
-          borderRadius: "20px",
-          border: "1px solid #ccc",
-          "@media (max-width: 440px)": {
-            width: "90%",
-          },
-        }}
-      >
+      <ItemCardContainer>
         <Box
           component="img"
           alt="item-image"
@@ -60,7 +46,8 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
           item={item}
           cartItem={itemIndex !== null ? cart?.items[itemIndex] : null}
         />
-      </Box>
+      </ItemCardContainer>
+
       <LoginDialog open={openDialog} handleClose={handleCloseDialog} />
     </>
   );

@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
 import { handleSignIn } from "../../services/firebaseService";
+import { LoginContainer } from "./Login.style";
 
 const validationSchema = yup.object({
   email: yup
@@ -61,10 +62,7 @@ const Login: React.FC = () => {
     },
   });
   return (
-    <Box
-      component="div"
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <LoginContainer>
       <Box component="img" src="./logo.png" alt="logo-image" width="200px" />
       <Typography variant="subtitle1">
         Digite seu email e senha para utilizar a plataforma da Hortifruti
@@ -154,7 +152,7 @@ const Login: React.FC = () => {
           Email/Senha invalidos !
         </Alert>
       </Snackbar>
-    </Box>
+    </LoginContainer>
   );
 };
 

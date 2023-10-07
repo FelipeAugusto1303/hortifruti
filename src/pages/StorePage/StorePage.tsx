@@ -6,6 +6,7 @@ import ItemCard from "../../components/ItemCard/ItemCard";
 import { getAllFruits } from "../../services/firebaseService";
 import { onSnapshot } from "firebase/firestore";
 import { Item } from "../../common/model";
+import { StyledItemsContainer } from "./StorePage.style";
 
 const StorePage: React.FC = () => {
   const [search, setSearch] = useState("");
@@ -34,20 +35,7 @@ const StorePage: React.FC = () => {
         }}
         sx={{ width: "100%" }}
       />
-      <Box
-        component="div"
-        sx={{
-          display: "flex",
-          gap: "10px",
-          flexWrap: "wrap",
-          marginTop: "20px",
-          "@media (max-width: 440px)": {
-            flexDirection: "column",
-            alignItems: "center",
-            flexWrap: "nowrap",
-          },
-        }}
-      >
+      <StyledItemsContainer>
         {items.length > 0
           ? items
               .filter((item) =>
@@ -57,7 +45,7 @@ const StorePage: React.FC = () => {
                 return <ItemCard key={item.id} item={item} />;
               })
           : null}
-      </Box>
+      </StyledItemsContainer>
     </Box>
   );
 };

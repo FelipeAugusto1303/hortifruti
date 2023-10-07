@@ -5,6 +5,7 @@ import LoginButton from "../LoginButton/LoginButton";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/appContext";
 import LoginDialog from "../LoginDialog/LoginDialog";
+import { HeaderButtonContainer, HeaderContainer } from "./Header.style";
 
 const Header: React.FC = () => {
   const navigate = useNavigate();
@@ -22,25 +23,7 @@ const Header: React.FC = () => {
   };
   return (
     <>
-      <Box
-        data-testid="header-container"
-        component="div"
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          height: "70px",
-          paddingRight: "20px",
-          "@media (max-width: 600px)": {
-            flexDirection: "column",
-            height: "150px",
-            paddingRight: "0px",
-          },
-          "@media (max-width: 440px)": {
-            height: "175px",
-          },
-        }}
-      >
+      <HeaderContainer data-testid="header-container">
         <Box
           component="img"
           src="./logo.png"
@@ -52,25 +35,7 @@ const Header: React.FC = () => {
             },
           }}
         />
-        <Box
-          data-testid="buttons-container"
-          component="div"
-          sx={{
-            display: "flex",
-            gap: "10px",
-            "@media (max-width: 600px)": {
-              gap: 0,
-              justifyContent: "space-between",
-              width: "100%",
-            },
-            "@media (max-width: 440px)": {
-              gap: "10px",
-              flexDirection: "column",
-              justifyContent: "space-between",
-              width: "100%",
-            },
-          }}
-        >
+        <HeaderButtonContainer data-testid="buttons-container">
           <CartButton
             items={cart !== null ? cart.items : []}
             onClick={handleOpenCart}
@@ -84,8 +49,9 @@ const Header: React.FC = () => {
             onClick={() => navigate("/hortifruti/login")}
             signout={signOut}
           />
-        </Box>
-      </Box>
+        </HeaderButtonContainer>
+      </HeaderContainer>
+
       <Divider sx={{ marginY: "20px", marginX: "10px" }} />
       <LoginDialog open={openDialog} handleClose={handleCloseDialog} />
     </>

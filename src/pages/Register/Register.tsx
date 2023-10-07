@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { createUser, handleCreateUser } from "../../services/firebaseService";
 import { useNavigate } from "react-router-dom";
+import { RegisterContainer } from "./Register.style";
 
 const validationSchema = yup.object({
   name: yup.string().required("O nome é obrgatório"),
@@ -63,10 +64,7 @@ const Register: React.FC = () => {
     },
   });
   return (
-    <Box
-      component="div"
-      sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <RegisterContainer>
       <Box component="img" src="./logo.png" alt="logo-image" width="200px" />
       <Typography variant="subtitle1">
         Digite seu email e senha para utilizar a plataforma da Hortifruti
@@ -159,7 +157,7 @@ const Register: React.FC = () => {
           O Email já existe !
         </Alert>
       </Snackbar>
-    </Box>
+    </RegisterContainer>
   );
 };
 

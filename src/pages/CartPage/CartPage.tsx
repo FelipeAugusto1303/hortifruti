@@ -17,6 +17,7 @@ import { useAppContext } from "../../context/appContext";
 import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import { getTotalPrice } from "../../common/utils";
+import { ButtonContainer, CartContainer } from "./CartPage.style";
 
 const CartPage: React.FC = () => {
   const navigate = useNavigate();
@@ -34,10 +35,7 @@ const CartPage: React.FC = () => {
   return (
     <>
       <Header />
-      <Box
-        component="div"
-        sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-      >
+      <CartContainer>
         <TableContainer component={Paper} sx={{ maxWidth: 800 }}>
           <Table sx={{ minWidth: 350 }} aria-label="simple table">
             <TableHead>
@@ -73,19 +71,7 @@ const CartPage: React.FC = () => {
         </TableContainer>
         {cart !== null ? (
           <>
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                marginTop: "20px",
-                width: "100%",
-                maxWidth: 800,
-                minWidth: 350,
-                gap: "20px",
-              }}
-            >
+            <ButtonContainer>
               <Button
                 variant="outlined"
                 onClick={() => navigate("/hortifruti/")}
@@ -98,19 +84,8 @@ const CartPage: React.FC = () => {
               >
                 Total: ${getTotalPrice(cart.items).toFixed(2)}
               </Typography>
-            </Box>
-            <Box
-              component="div"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "flex-end",
-                marginTop: "20px",
-                width: "100%",
-                maxWidth: 800,
-                minWidth: 350,
-              }}
-            >
+            </ButtonContainer>
+            <ButtonContainer>
               <Button
                 variant="contained"
                 onClick={() => {
@@ -123,7 +98,7 @@ const CartPage: React.FC = () => {
               >
                 Finalizar Compra
               </Button>
-            </Box>
+            </ButtonContainer>
           </>
         ) : null}
         <Snackbar
@@ -140,7 +115,7 @@ const CartPage: React.FC = () => {
             É necessário ter produtos no carrinho para seguir com a compra
           </Alert>
         </Snackbar>
-      </Box>
+      </CartContainer>
     </>
   );
 };

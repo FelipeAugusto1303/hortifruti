@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { ItemButtonProps } from "./ItemButton.model";
+import { ItemButtonContainer } from "./ItemButton.style";
 
 const ItemButton: React.FC<ItemButtonProps> = ({
   handleUpdateItem,
@@ -21,17 +22,7 @@ const ItemButton: React.FC<ItemButtonProps> = ({
           Adicionar Item
         </Button>
       ) : (
-        <Box
-          component="div"
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            border: "1px solid #ccc",
-            borderRadius: "30px",
-            width: "80%",
-          }}
-        >
+        <ItemButtonContainer>
           <Button
             variant="contained"
             sx={{
@@ -55,7 +46,7 @@ const ItemButton: React.FC<ItemButtonProps> = ({
           >
             -
           </Button>
-        </Box>
+        </ItemButtonContainer>
       )}
     </>
   );
