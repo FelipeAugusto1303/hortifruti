@@ -8,7 +8,7 @@ describe("ItemButton", () => {
     const handleFunction = (item: any, action: "INCREMENT" | "DECREMENT") => {
       console.log(item, action);
     };
-    const item = null;
+    const item = { id: "id-test", data: { name: "test", price: 20 } };
     const cartItem = null;
     const { getByText } = render(
       <ItemButton

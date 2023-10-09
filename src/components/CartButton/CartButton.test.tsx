@@ -17,7 +17,11 @@ describe("CartButton", () => {
   });
 
   test("Should show items length in badge", () => {
-    const { getByTestId } = render(<CartButton items={["1", "2"]} />);
+    const items = [
+      { id: "test-id1", name: "test1", price: 20, qnt: 1 },
+      { id: "test-id2", name: "test2", price: 20, qnt: 1 },
+    ];
+    const { getByTestId } = render(<CartButton items={items} />);
 
     expect(getByTestId("cart-badge")).toHaveTextContent("2");
   });

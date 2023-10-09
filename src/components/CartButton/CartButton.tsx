@@ -1,6 +1,6 @@
 import React from "react";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Badge, Box, Typography } from "@mui/material";
+import { Badge, Typography } from "@mui/material";
 import { getTotalPrice } from "../../common/utils";
 import { CartButtonProps } from "./CartButton.model";
 import { CartButtonContainer } from "./CartButton.style";
