@@ -68,7 +68,7 @@ describe("LoginButton", () => {
     expect(getByText("Olá, Felipe")).toHaveStyle({ color: "#0000008A" });
   });
 
-  test("Should have correct ttext color without user", () => {
+  test("Should have correct text color without user", () => {
     const { getByText } = render(
       <LoginButton
         user={{}}

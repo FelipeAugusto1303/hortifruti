@@ -44,7 +44,7 @@ describe("ItemCard", () => {
     );
 
     expect(getByTestId("itemcard-container")).toHaveStyle(
-      "display: flex;flex-direction:column;align-items:center;width:250px;height:320px;border-radius:20px;border:1px solid #ccc;"
+      "display: flex;flex-direction:column;align-items:center;width:250px;min-height:340px;border-radius:20px;border:1px solid #ccc;"
     );
   });
 
