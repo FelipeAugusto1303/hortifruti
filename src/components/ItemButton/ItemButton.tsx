@@ -24,6 +24,7 @@ const ItemButton: React.FC<ItemButtonProps> = ({
       ) : (
         <ItemButtonContainer>
           <Button
+            data-testid="item-add"
             variant="contained"
             sx={{
               fontSize: "20px",
@@ -34,8 +35,11 @@ const ItemButton: React.FC<ItemButtonProps> = ({
           >
             +
           </Button>
-          <Typography variant="body2">{cartItem.qnt}</Typography>
+          <Typography data-testid="item-qnt" variant="body2">
+            {cartItem.qnt}
+          </Typography>
           <Button
+            data-testid="item-remove"
             variant="contained"
             sx={{
               fontSize: "20px",

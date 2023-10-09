@@ -30,7 +30,7 @@ const ItemCard: React.FC<ItemCardProps> = ({ item }) => {
 
   return (
     <>
-      <ItemCardContainer>
+      <ItemCardContainer data-testid="itemcard-container">
         <Box
           component="img"
           alt="item-image"

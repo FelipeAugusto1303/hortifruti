@@ -73,6 +73,7 @@ const CartPage: React.FC = () => {
           <>
             <ButtonContainer>
               <Button
+                data-testid="go-to-store"
                 variant="outlined"
                 onClick={() => navigate("/hortifruti/")}
               >
@@ -82,11 +83,12 @@ const CartPage: React.FC = () => {
                 variant="subtitle1"
                 sx={{ color: "#ea1d2c", fontWeight: "bold" }}
               >
-                Total: ${getTotalPrice(cart.items).toFixed(2)}
+                Total: R${getTotalPrice(cart.items).toFixed(2)}
               </Typography>
             </ButtonContainer>
             <ButtonContainer>
               <Button
+                data-testid="go-to-checkout"
                 variant="contained"
                 onClick={() => {
                   if (cart !== null && cart.items.length > 0) {

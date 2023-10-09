@@ -20,11 +20,14 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, handleClose }) => {
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">
+      <DialogTitle id="alert-dialog-title" data-testid="dialog-title">
         Realize o login na plataforma
       </DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText
+          id="alert-dialog-description"
+          data-testid="dialog-description"
+        >
           <Typography variant="body2">
             Para continuar com a operação desejada, por favor realize o login na
             plataforma Hortifruti.
@@ -32,10 +35,15 @@ const LoginDialog: React.FC<LoginDialogProps> = ({ open, handleClose }) => {
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button variant="text" onClick={handleClose}>
+        <Button
+          data-testid="dialog-cancel"
+          variant="text"
+          onClick={handleClose}
+        >
           Cancelar
         </Button>
         <Button
+          data-testid="dialog-login"
           variant="contained"
           onClick={() => navigate("/hortifruti/login")}
           sx={{

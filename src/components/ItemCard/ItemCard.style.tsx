@@ -6,7 +6,6 @@ export const ItemCardContainer = styled(Box)({
   alignItems: "center",
   width: "250px",
   minHeight: "340px",
-  paddingY: "15px",
   borderRadius: "20px",
   border: "1px solid #ccc",
   "@media (max-width: 440px)": {

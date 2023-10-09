@@ -94,6 +94,7 @@ const Login: React.FC = () => {
         />
 
         <Button
+          data-testid="login-button"
           type="submit"
           fullWidth
           variant="contained"
@@ -108,6 +109,7 @@ const Login: React.FC = () => {
           )}
         </Button>
         <Button
+          data-testid="go-register-page"
           fullWidth
           variant="text"
           sx={{ marginTop: "10px" }}
@@ -116,6 +118,7 @@ const Login: React.FC = () => {
           Cadastre-se
         </Button>
         <Button
+          data-testid="go-main-page"
           fullWidth
           variant="text"
           sx={{ marginTop: "10px" }}

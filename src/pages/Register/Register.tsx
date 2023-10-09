@@ -67,7 +67,7 @@ const Register: React.FC = () => {
     <RegisterContainer>
       <Box component="img" src="./logo.png" alt="logo-image" width="200px" />
       <Typography variant="subtitle1">
-        Digite seu email e senha para utilizar a plataforma da Hortifruti
+        Cadastre seu email e senha para utilizar a plataforma da Hortifruti
       </Typography>
       <form onSubmit={formik.handleSubmit}>
         <TextField
@@ -107,6 +107,7 @@ const Register: React.FC = () => {
           helperText={formik.touched.password && formik.errors.password}
         />
         <Button
+          data-testid="register-button"
           type="submit"
           fullWidth
           variant="contained"
@@ -121,6 +122,7 @@ const Register: React.FC = () => {
           )}
         </Button>
         <Button
+          data-testid="go-login"
           onClick={() => navigate("/hortifruti/login")}
           fullWidth
           variant="text"

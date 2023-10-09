@@ -34,6 +34,7 @@ const Header: React.FC = () => {
               height: "100px",
             },
           }}
+          onClick={() => navigate("/hortifruti/")}
         />
         <HeaderButtonContainer data-testid="buttons-container">
           <CartButton

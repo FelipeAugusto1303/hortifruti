@@ -29,6 +29,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({
             Olá, {user.name}
           </Typography>
           <LogoutIcon
+            data-testid="logout"
             color="action"
             onClick={signout}
             sx={{ cursor: "pointer" }}
@@ -36,6 +37,7 @@ const LoginButton: React.FC<LoginButtonProps> = ({
         </Box>
       ) : (
         <Box
+          data-testid="login"
           component="div"
           sx={{ display: "flex", alignItems: "center" }}
           onClick={onClick}

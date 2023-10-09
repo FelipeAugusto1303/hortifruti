@@ -7,7 +7,7 @@ import { CartButtonContainer } from "./CartButton.style";
 
 const CartButton: React.FC<CartButtonProps> = ({ items, onClick }) => {
   return (
-    <CartButtonContainer>
+    <CartButtonContainer onClick={onClick} data-testid="cart-button">
       <Badge data-testid="cart-badge" badgeContent={items.length} color="error">
         <ShoppingCartIcon data-testid="cart-icon" color="action" />
       </Badge>

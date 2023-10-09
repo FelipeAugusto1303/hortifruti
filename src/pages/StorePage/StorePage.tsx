@@ -27,6 +27,7 @@ const StorePage: React.FC = () => {
     <Box>
       <Header />
       <TextField
+        data-testid="search-field"
         placeholder="Procure um item"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
